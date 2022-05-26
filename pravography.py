@@ -38,5 +38,6 @@ else:
   pass
 
 for image_dict in image_dataset:
-  st.image(image_dict.keys())
-  st.write(image_dict.values())
+  for image, text in image_dict.items():
+    st.image(image)
+    st.write(text)
