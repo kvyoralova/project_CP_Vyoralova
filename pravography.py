@@ -6,7 +6,11 @@ number = st.slider("Scegli un numero da 1 a 10", min_value=1, max_value=10)
 random = st.button("Oppure clicca qui per avere 5 immagini casuali")
 number = str(number)
 
-chosen_dataset = {'1':['1. Arancia.jpeg', '1. Bacio.jpeg', '1. Cetriolo.jpeg', '1. Ciuccio.jpeg', '1. Dieci.jpeg']}
+chosen_dataset = {'1':[('1. Arancia.jpeg', 'апельсин'),
+                       ('1. Bacio.jpeg', 'поцілунок'),
+                       ('1. Cetriolo.jpeg', 'огірок'),
+                       ('1. Ciuccio.jpeg', 'пустушка'),
+                       ('1. Dieci.jpeg', 'десять')]}
 #                  '2':['prova', 'cane', 'gatto', 'akj', 'slkdf'],
 #                  '3':[],
 #                  '4':[],
@@ -32,4 +36,5 @@ else:
   pass
 
 for image in image_dataset:
-  st.image(image)
+  st.image(image[0])
+  st.write(image[1])
