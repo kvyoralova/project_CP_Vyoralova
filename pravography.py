@@ -5,7 +5,6 @@ st.subheader('Грайте, пишіть і вчіться! Gioca, scrivi e impa
 
 st.write("Скажи мені число від 1 до 10. Dimmi un numero da 1 a 10.")
 
-import streamlit as st
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
