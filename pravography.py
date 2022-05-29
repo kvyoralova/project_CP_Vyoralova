@@ -98,14 +98,14 @@ for image_dict in image_dataset:
       }
       recognition.start();
       """))
-    result = streamlit_bokeh_events(
-        stt_button,
-        events="GET_TEXT",
-        key="listen",
-        refresh_on_update=False,
-        override_height=75,
-        debounce_time=0)
-    if result:
-      if "GET_TEXT" in result:
-        st.write(result.get("GET_TEXT"))
-    #st.write(text)
+      result = streamlit_bokeh_events(
+          stt_button,
+          events="GET_TEXT",
+          key="listen",
+          refresh_on_update=False,
+          override_height=75,
+          debounce_time=0)
+      if result:
+        if "GET_TEXT" in result:
+          st.write(result.get("GET_TEXT"))
+      #st.write(text)
