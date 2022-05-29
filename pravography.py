@@ -1,7 +1,4 @@
 import streamlit as st
-from bokeh.models.widgets import Button
-from bokeh.models import CustomJS
-from streamlit_bokeh_events import streamlit_bokeh_events
 
 st.title('Pravografia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
 st.subheader('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
