@@ -1,4 +1,4 @@
 numpy
-ibm-watson>=6.0.0
-SpeechRecognition
+bokeh
+streamlit_bokeh_events
 
