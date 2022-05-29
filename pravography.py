@@ -6,7 +6,7 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 st.title('Pravografia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
 st.write('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
 
-number = st.text_input("Запишіть число від 1 до 10. Scrivi un numero da 1 a 10.", value=None)
+number = st.text_input("Запишіть число від 1 до 10. Scrivi un numero da 1 a 10.", value=' ')
 random = st.button("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
 
 chosen_dataset = {'1':[{'1. Arancia.jpeg':'апельсин'},
@@ -69,7 +69,7 @@ print(all_images)
 random_dataset = numpy.random.choice(all_images, 5, False)
 print(random_dataset)
 
-if number != None:
+if number != ' ':
   image_dataset = chosen_dataset[number]
 elif random:
   image_dataset = random_dataset
