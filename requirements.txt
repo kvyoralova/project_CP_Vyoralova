@@ -1,3 +1,2 @@
 numpy
-bokeh
-streamlit_bokeh_events
+pyaudio
