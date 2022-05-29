@@ -9,6 +9,8 @@ st.write('Грайте, пишіть і вчіться! Gioca, scrivi e impara!'
 number = st.text_input("Запишіть число від 1 до 10. Scrivi un numero da 1 a 10.", value=' ')
 random = st.button("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
 
+st.write(type(number))
+
 chosen_dataset = {'1':[{'1. Arancia.jpeg':'апельсин'},
                        {'1. Bacio.jpeg':'поцілунок'},
                        {'1. Cetriolo.jpeg':'огірок'},
