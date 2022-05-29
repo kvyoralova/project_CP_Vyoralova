@@ -1,2 +1,6 @@
 numpy
+__future__
+re
+sys
+google.cloud
 pyaudio
