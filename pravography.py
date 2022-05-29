@@ -69,7 +69,7 @@ print(all_images)
 random_dataset = numpy.random.choice(all_images, 5, False)
 print(random_dataset)
 
-if number:
+if number != None:
   image_dataset = chosen_dataset[number]
 elif random:
   image_dataset = random_dataset
