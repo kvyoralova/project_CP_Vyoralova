@@ -1,4 +1,12 @@
 import streamlit as st
+from gtts import gTTS
+import IPython.display as ipd 
+from googletrans import Translator
+
+def audioplayer(audio):
+  ipd.display(ipd.Audio(audio, autoplay=True))
+
+
 
 st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
 st.subheader('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
@@ -79,6 +87,14 @@ else:
 for image_dict in image_dataset:
   for image, text in image_dict.items():
     st.image(image)
-    st.write('Як ви говорите те, що бачите українською? Come si dice in ucraino la cosa che vedi?')
-
-       #st.write(text)
+    #st.write('Як ви говорите те, що бачите українською? Come si dice in ucraino la cosa che vedi?')
+    st.write(text)
+    translator = Translator()
+    lang = translator.translate("Пойдём в парк", src="uk", dest="it") 
+    translated_text = lang.text
+    text_to_speech = input("Give me some text you want me to read for you: ")
+    tts=gTTS(text=translated_text, lang=it)
+    tts.save('audio.mp3')
+    print('Італійською ми говоримо так:')
+    audioplayer('audio.mp3')
+    
