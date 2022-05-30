@@ -11,7 +11,8 @@ def audioplayer(audio):
 st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
 st.subheader('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
 
-st.write("Скажи мені число від 1 до 10. Dimmi un numero da 1 a 10.")
+#st.write()
+number = st.text_input("Скажи мені число від 1 до 10. Dimmi un numero da 1 a 10.", value="")
 #audio input from microphone in ukrainian
 
 
@@ -82,7 +83,7 @@ if number != ' ':
 elif random:
   image_dataset = random_dataset
 else:
-  break
+  pass
 
 for image_dict in image_dataset:
   for image, text in image_dict.items():
