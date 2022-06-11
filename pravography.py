@@ -2,10 +2,19 @@ import streamlit as st
 from gtts import gTTS
 import IPython.display as ipd 
 from googletrans import Translator
+import time
+import sys
+import language_tool_python
 
 def audioplayer(audio):
   ipd.display(ipd.Audio(audio, autoplay=True))
 
+def make_it_flash(text):
+    for i in reversed(range(2)):
+        sys.stdout.write('\r')
+        sys.stdout.write(text if i % 2 else ' '*len(text))
+        sys.stdout.flush()
+        time.sleep(5)
 
 
 st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
@@ -14,7 +23,7 @@ st.subheader('Грайте, пишіть і вчіться! Gioca, scrivi e impa
 #st.write()
 number = st.text_input("Скажи мені число від 1 до 10. Dimmi un numero da 1 a 10.", value="")
 #audio input from microphone in ukrainian
-
+#https://developers.deepgram.com/documentation/getting-started/streaming/ 
 
 random = st.button("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
 
