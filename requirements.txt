@@ -3,5 +3,22 @@ gTTS
 googletrans==4.0.0-rc1
 language_tool_python
 bokeh
-streamlit_bokeh_events
+
+--find-links=https://girder.github.io/large_image_wheels GDAL
+# cartopy
+geopandas
+keplergl
+palettable
+localtileserver
+owslib
+plotly
+streamlit
+streamlit-folium
+streamlit-keplergl
+streamlit-bokeh-events
+tropycal
+# leafmap
+# geemap
+git+https://github.com/giswqs/leafmap
+git+https://github.com/giswqs/geemap
 geopy
