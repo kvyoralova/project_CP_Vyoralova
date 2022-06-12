@@ -12,7 +12,6 @@ from streamlit_bokeh_events import streamlit_bokeh_events
 import leafmap.foliumap as leafmap
 import geopy
 from geopy.geocoders import Nominatim
-import pyautogui
 
 
 
@@ -254,6 +253,4 @@ else:
 percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
 final_message(percentuale, language)
 
- 
-if st.button("Gioca ancora"):
-    pyautogui.hotkey("ctrl","F5")
+
