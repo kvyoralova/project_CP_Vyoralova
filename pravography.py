@@ -46,7 +46,7 @@ def geo(address):
             geoLoc = Nominatim(user_agent="GetLoc")
             locname = geoLoc.reverse(latlon)
             address = locname.address
-            st.write(address)
+    return address
             
 
 #def audioplayer(audio):
