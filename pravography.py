@@ -46,7 +46,7 @@ def geo(address):
             geoLoc = Nominatim(user_agent="GetLoc")
             locname = geoLoc.reverse(latlon)
             address = locname.address
-            
+            st.write(address)
             
 
 #def audioplayer(audio):
@@ -126,4 +126,4 @@ st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.
 
 address = " "
 geo(address)
-st.write(address)
+
