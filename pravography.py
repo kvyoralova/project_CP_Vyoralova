@@ -58,7 +58,7 @@ def disappear(text):
     placeholder.empty()
 
 def game(dataset, num, correctness_counter, wrong_words, language):
-image_dict = dataset[num]
+  image_dict = dataset[num]
   for image, text in image_dict.items():
         col1, col2 = st.columns(2)
         with col1:
