@@ -235,7 +235,7 @@ if language == 'it':
     for el in wrong_words:
       st.write(el)
 else:
-  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset) 'слів!')
+  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
   st.write('You got', len(correctness_counter), 'correct words out of', len(image_dataset), "1")
   if wrong_words != []:
     st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
