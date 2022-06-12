@@ -54,9 +54,9 @@ def geo():
 
 def make_it_flash(text):
     for i in reversed(range(2)):
-        st.write(sys.stdout.write('\r'))
-        st.write(sys.stdout.write(text if i % 2 else ' '*len(text)))
-        st.write(sys.stdout.flush())
+        sys.stdout.write('\r')
+        sys.stdout.write(text if i % 2 else ' '*len(text))
+        sys.stdout.flush()
         time.sleep(5)
 
 def game(dataset, num, correctness_counter, wrong_words, language):
@@ -85,7 +85,7 @@ def game(dataset, num, correctness_counter, wrong_words, language):
   st.write('Вимова цього слова: ')
   st.audio('audio.mp3')
   st.write("Тепер ви побачите, як пишеться це слово. Спробуй це запам’ятати! ")
-  make_it_flash(translated_text)
+  st.write(make_it_flash(translated_text))
   user_guess = st.text_input("\nА тепер спробуйте самі написати це слово! ")
   tool = language_tool_python.LanguageTool(language)
   matches = tool.check(user_guess)
