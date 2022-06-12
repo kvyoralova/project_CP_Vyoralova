@@ -54,9 +54,9 @@ def geo():
 
 def make_it_flash(text):
     for i in reversed(range(2)):
-        sys.stdout.write('\r')
-        sys.stdout.write(text if i % 2 else ' '*len(text))
-        sys.stdout.flush()
+        st.write(sys.stdout.write('\r'))
+        st.write(sys.stdout.write(text if i % 2 else ' '*len(text)))
+        st.write(sys.stdout.flush())
         time.sleep(5)
 
 def game(dataset, num, correctness_counter, wrong_words, language):
