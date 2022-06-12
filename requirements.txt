@@ -3,7 +3,7 @@ gTTS
 googletrans==4.0.0-rc1
 language_tool_python
 bokeh
-
+pyautogui
 --find-links=https://girder.github.io/large_image_wheels GDAL
 # cartopy
 geopandas
