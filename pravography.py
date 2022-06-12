@@ -242,7 +242,7 @@ if address:
         game(image_dataset, 1, correctness_counter, wrong_words, language)
         game(image_dataset, 2, correctness_counter, wrong_words, language)
         game(image_dataset, 3, correctness_counter, wrong_words, language)
-        game(image_dataset, 4, correctness_counter, wrong_words, language)
+        #game(image_dataset, 4, correctness_counter, wrong_words, language)
     
 if address:
     if number != '':
