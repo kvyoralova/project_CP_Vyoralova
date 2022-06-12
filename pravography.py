@@ -46,7 +46,7 @@ def geo():
             geoLoc = Nominatim(user_agent="GetLoc")
             locname = geoLoc.reverse(latlon)
             address = locname.address
-    return address
+            return address
             
 
 #def audioplayer(audio):
@@ -125,7 +125,7 @@ st.caption("Press the button to get your location and start the game.")
 st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
 
 
-geo()
+address = geo()
 st.write(address)
 import re
 regexpr = r'[A-Za-z]+'
