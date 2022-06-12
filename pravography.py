@@ -52,7 +52,7 @@ def geo():
 def disappear(text):
     placeholder = st.empty()
     placeholder.text(text)
-    time.sleep(5)
+    time.sleep(7)
     placeholder.empty()
 
 def game(dataset, correctness_counter, wrong_words, language):
@@ -89,6 +89,7 @@ def game(dataset, correctness_counter, wrong_words, language):
     correctness_counter.append(user_guess)
   else:
     wrong_words.append(translated_text)
+  user_guess.empty()
     
 def final_message(percentuale, language):
   if percentuale > 60:
