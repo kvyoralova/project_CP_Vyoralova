@@ -243,16 +243,17 @@ if address:
 
 if address:
     if number != '':
+        percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
         if language == 'it':
-            st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
-            st.caption('Hai fatto giuste', str(len(correctness_counter)), 'parole su ', str(len(image_dataset)))
+            st.subheader('Ви правильно отримали', str(percentuale), '% слів!')
+            st.caption('Hai fatto giuste il', str(percentuale), '% delle parole!')
             if wrong_words != []:
                 st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
                 for el in wrong_words:
                     st.write(el)
         else:
-            st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
-            st.caption('You got', str(len(correctness_counter)), 'correct words out of', str(len(image_dataset)), "!")
+            st.subheader('Ви правильно отримали', str(percentuale), '% слів!')
+            st.caption('You got correctly the', str(percentuale), '% of the words!')
             if wrong_words != []:
                 st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
                 for el in wrong_words:
@@ -260,7 +261,6 @@ if address:
     
 if address:
     if number != '':
-        percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
         final_message(percentuale, language)
 
 
