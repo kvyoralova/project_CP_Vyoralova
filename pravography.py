@@ -5,9 +5,62 @@ from googletrans import Translator
 import time
 import sys
 import language_tool_python
+import streamlit as st
+from bokeh.models.widgets import Button
+from bokeh.models import CustomJS
+from streamlit_bokeh_events import streamlit_bokeh_events
+import leafmap.foliumap as leafmap
+import geopy
+from geopy.geocoders import Nominatim
 
-def audioplayer(audio):
-  ipd.display(ipd.Audio(audio, autoplay=True))
+
+def geo():
+    loc_button = Button(label="Отримати місцезнаходження пристрою", max_width=250)
+    loc_button.js_on_event(
+        "button_click",
+        CustomJS(
+            code="""
+        navigator.geolocation.getCurrentPosition(
+            (loc) => {
+                document.dispatchEvent(new CustomEvent("GET_LOCATION", {detail: {lat: loc.coords.latitude, lon: loc.coords.longitude}}))
+            }
+        )
+        """
+        ),
+    )
+    result = streamlit_bokeh_events(
+        loc_button,
+        events="GET_LOCATION",
+        key="get_location",
+        refresh_on_update=False,
+        override_height=75,
+        debounce_time=0,
+    )
+    if result:
+        if "GET_LOCATION" in result:
+            loc = result.get("GET_LOCATION")
+            lat = loc.get("lat")
+            lon = loc.get("lon")
+            #st.write(f"Lat, Lon: {lat}, {lon}")
+            latlon = str(lat) + ", " + str(lon)
+            geoLoc = Nominatim(user_agent="GetLoc")
+            locname = geoLoc.reverse(latlon)
+            address = locname.address
+            import re
+            regexpr = r'[A-Za-z]+'
+            actual_location = re.findall(regexpr, image.lower())
+            country = actual_location[-1]
+            if country == "Italia":
+              language = "it"
+              st.write("Ви перебуваєте в Італії, тому програма працюватиме італійською мовою.")
+              st.write("Sei in Italia, quindi l'app verrà eseguita in italiano.")
+            else:
+              language =  "en"
+              st.write("Ви перебуваєте за межами Італії, тому програма працюватиме англійською мовою.")
+              st.write("You are out of Italy, so the app will run in English.")
+
+#def audioplayer(audio):
+#  ipd.display(ipd.Audio(audio, autoplay=True))
 
 def make_it_flash(text):
     for i in reversed(range(2)):
@@ -16,16 +69,89 @@ def make_it_flash(text):
         sys.stdout.flush()
         time.sleep(5)
 
+def game(dataset, num, correctness_counter, wrong_words, language):
+  image_dict = dataset[num]
+  for image, text in image_dict.items():
+    st.image(image)
+    st.write(text)
+  translator = Translator()
+  lang = translator.translate(text, src="uk", dest=language) 
+  translated_text = lang.text
+  import re
+  regexpr = r'[A-Za-z]+'
+  correct_trans_words = re.findall(regexpr, image.lower())
+  correct_translation = correct_trans_words[0]
+  if language != 'it':
+    eng = translator.translate(correct_translation, src="it", dest=language)
+    correct_translation = eng.text
+  else:
+    pass
+  if translated_text != correct_translation:
+    translated_text = correct_translation
+  else:
+    pass
+  tts=gTTS(text=translated_text, lang=language)
+  tts.save('audio.mp3')
+  st.write('Вимова цього слова: ')
+  st.audio('audio.mp3')
+  st.write("Тепер ви побачите, як пишеться це слово. Спробуй це запам’ятати! ")
+  make_it_flash(translated_text)
+  user_guess = st.text_input("\nА тепер спробуйте самі написати це слово! ")
+  tool = language_tool_python.LanguageTool(language)
+  matches = tool.check(user_guess)
+  if matches == []:
+    correctness_counter.append(user_guess)
+  else:
+    wrong_words.append(translated_text)
+    
+def final_message(percentuale, language):
+  if percentuale > 60:
+    message='хороша робота!'
+    tts_uk=gTTS(text=message, lang='uk')
+    tts_uk.save('audio_uk.mp3')
+    st.audio('audio_uk.mp3')
+    translator = Translator()
+    tran_lang = translator.translate(text, src="uk", dest=language) 
+    tran_message = tran_lang.text
+    tts_lan=gTTS(text=tran_message, lang=language)
+    tts_lan.save('audio_lan.mp3')
+    st.audio('audio_lan.mp3')
+    st.image('smile.png')
+  else:
+    message='спробуйте ще раз!'
+    tts_uk=gTTS(text=message, lang='uk')
+    tts_uk.save('audio_uk.mp3')
+    st.audio('audio_uk.mp3')
+    translator = Translator()
+    tran_lang = translator.translate(text, src="uk", dest=language) 
+    tran_message = tran_lang.text
+    tts_lan=gTTS(text=tran_message, lang=language)
+    tts_lan.save('audio_lan.mp3')
+    st.audio('audio_lan.mp3')
+    st.image('forza.jpeg')
 
-st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
-st.subheader('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
+geo()
 
-#st.write()
-number = st.text_input("Скажи мені число від 1 до 10. Dimmi un numero da 1 a 10.", value="")
-#audio input from microphone in ukrainian
-#https://developers.deepgram.com/documentation/getting-started/streaming/ 
-
-random = st.button("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
+if language == 'it':
+  st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
+  st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
+  st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
+  st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
+  
+  st.subheader("Давай грати! Giochiamo!")
+  number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
+  st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
+  random = st.button("Tут. Qui.")
+else:
+  st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
+  st.header('Грайте, пишіть і вчіться! Play, write and learn!')
+  st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
+  st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
+  
+  st.subheader("Давай грати! Let's play!")
+  number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
+  st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
+  random = st.button("Tут. Here.")
 
 chosen_dataset = {'1':[{'1. Arancia.jpeg':'апельсин'},
                        {'1. Bacio.jpeg':'поцілунок'},
@@ -83,9 +209,7 @@ all_images = list()
 for myList in chosen_dataset.values():
   for image_dict in myList:
         all_images.append(image_dict)
-print(all_images)
 random_dataset = numpy.random.choice(all_images, 5, False)
-print(random_dataset)
 
 if number != ' ':
   image_dataset = chosen_dataset[number]
@@ -94,17 +218,29 @@ elif random:
 else:
   pass
 
-for image_dict in image_dataset:
-  for image, text in image_dict.items():
-    st.image(image)
-    #st.write('Як ви говорите те, що бачите українською? Come si dice in ucraino la cosa che vedi?')
-    st.write(text)
-    translator = Translator()
-    lang = translator.translate("Пойдём в парк", src="uk", dest="it") 
-    translated_text = lang.text
-    text_to_speech = input("Give me some text you want me to read for you: ")
-    tts=gTTS(text=translated_text, lang=it)
-    tts.save('audio.mp3')
-    print('Італійською ми говоримо так:')
-    audioplayer('audio.mp3')
+counter = 0
+number_of_images = len(image_dataset)-1
+correctness_counter = []
+wrong_words = []
+
+while counter <= number_of_images:
+  game(image_dataset, counter, correctness_counter, wrong_words, language)
+  counter = counter + 1
+
+if language == 'it':
+  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset) 'слів!')
+  st.write('Hai fatto giuste', len(correctness_counter), 'parole su ', len(image_dataset))
+  if wrong_words != []:
+    st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+    for el in wrong_words:
+      st.write(el)
+else:
+  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset) 'слів!')
+  st.write('You got', len(correctness_counter), 'correct words out of', len(image_dataset), "1")
+  if wrong_words != []:
+    st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+    for el in wrong_words:
+      st.write(el)
     
+percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
+final_message(percentuale, language)
