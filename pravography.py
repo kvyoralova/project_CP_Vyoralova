@@ -89,7 +89,6 @@ def game(dataset, num, correctness_counter, wrong_words, language):
     correctness_counter.append(user_guess)
   else:
     wrong_words.append(translated_text)
-  st.empty(user_guess)
     
 def final_message(percentuale, language):
   if percentuale > 60:
