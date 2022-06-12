@@ -229,28 +229,31 @@ if address:
 correctness_counter = []
 wrong_words = []
 
-game(image_dataset[0], 0, correctness_counter, wrong_words, language)
-game(image_dataset[1], 1, correctness_counter, wrong_words, language)
-game(image_dataset[2], 2, correctness_counter, wrong_words, language)
-game(image_dataset[3], 3, correctness_counter, wrong_words, language)
-game(image_dataset[4], 4, correctness_counter, wrong_words, language)
+if address:
+    game(image_dataset[0], 0, correctness_counter, wrong_words, language)
+    game(image_dataset[1], 1, correctness_counter, wrong_words, language)
+    game(image_dataset[2], 2, correctness_counter, wrong_words, language)
+    game(image_dataset[3], 3, correctness_counter, wrong_words, language)
+    game(image_dataset[4], 4, correctness_counter, wrong_words, language)
 
-if language == 'it':
-  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
-  st.write('Hai fatto giuste', len(correctness_counter), 'parole su ', len(image_dataset))
-  if wrong_words != []:
-    st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
-    for el in wrong_words:
-      st.write(el)
-else:
-  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
-  st.write('You got', len(correctness_counter), 'correct words out of', len(image_dataset), "1")
-  if wrong_words != []:
-    st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
-    for el in wrong_words:
-      st.write(el)
+if address:
+    if language == 'it':
+        st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
+        st.write('Hai fatto giuste', len(correctness_counter), 'parole su ', len(image_dataset))
+        if wrong_words != []:
+            st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+            for el in wrong_words:
+                st.write(el)
+    else:
+        st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
+        st.write('You got', len(correctness_counter), 'correct words out of', len(image_dataset), "1")
+        if wrong_words != []:
+            st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+            for el in wrong_words:
+                st.write(el)
     
-percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
-final_message(percentuale, language)
+if address:
+    percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
+    final_message(percentuale, language)
 
 
