@@ -228,7 +228,7 @@ while counter <= number_of_images:
   counter = counter + 1
 
 if language == 'it':
-  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset) 'слів!')
+  st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
   st.write('Hai fatto giuste', len(correctness_counter), 'parole su ', len(image_dataset))
   if wrong_words != []:
     st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
