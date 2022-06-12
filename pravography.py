@@ -222,7 +222,7 @@ for myList in chosen_dataset.values():
 random_dataset = numpy.random.choice(all_images, 5, False)
 
 if address:
-    if number != ' ':
+    if number != '':
         image_dataset = chosen_dataset[number]
     elif random:
         image_dataset = random_dataset
