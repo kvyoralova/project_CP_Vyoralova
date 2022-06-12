@@ -120,9 +120,10 @@ def final_message(percentuale, language):
     st.audio('audio_lan.mp3')
     st.image('forza.jpeg')
 
-st.caption("Натисніть кнопку, щоб отримати своє місцезнаходження та почати гру.")
-st.caption("Press the button to get your location and start the game.")
-st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
+with st.expander("See explanation"):
+    st.caption("Натисніть кнопку, щоб отримати своє місцезнаходження та почати гру.")
+    st.caption("Press the button to get your location and start the game.")
+    st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
 
 address = geo()
 if address:
@@ -142,8 +143,9 @@ if address:
     if language == 'it':
         st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
         st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
-        st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
-        st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
+        with st.expander("Vedi spiegazione"):
+            st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
+            st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
   
         st.subheader("Давай грати! Giochiamo!")
         number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
@@ -152,8 +154,9 @@ if address:
     else:
         st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
         st.header('Грайте, пишіть і вчіться! Play, write and learn!')
-        st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
-        st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
+        with st.expander("See explanation"):
+            st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
+            st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
   
         st.subheader("Давай грати! Let's play!")
         number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
@@ -238,17 +241,17 @@ if address:
 
 if address:
     if language == 'it':
-        st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
-        st.write('Hai fatto giuste', len(correctness_counter), 'parole su ', len(image_dataset))
+        st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
+        st.caption('Hai fatto giuste', str(len(correctness_counter)), 'parole su ', str(len(image_dataset)))
         if wrong_words != []:
-            st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+            st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
             for el in wrong_words:
                 st.write(el)
     else:
-        st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
-        st.write('You got', len(correctness_counter), 'correct words out of', len(image_dataset), "1")
+        st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
+        st.caption('You got', str(len(correctness_counter)), 'correct words out of', str(len(image_dataset)), "!")
         if wrong_words != []:
-            st.write("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+            st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
             for el in wrong_words:
                 st.write(el)
     
