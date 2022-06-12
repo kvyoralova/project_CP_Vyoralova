@@ -55,7 +55,7 @@ def disappear(text):
     time.sleep(7)
     placeholder.empty()
 
-def game(dataset, correctness_counter, wrong_words, language):
+def game(dataset, num, correctness_counter, wrong_words, language):
   image_dict = dataset
   for image, text in image_dict.items():
     st.image(image)
@@ -82,7 +82,7 @@ def game(dataset, correctness_counter, wrong_words, language):
   st.audio('audio.mp3')
   st.write("Тепер ви побачите, як пишеться це слово. Спробуй це запам’ятати! ")
   disappear(translated_text)
-  user_guess = st.text_input("\nА тепер спробуйте самі написати це слово! ")
+  user_guess = st.text_input("\nА тепер спробуйте самі написати це слово! ", value="", key=num+1)
   tool = language_tool_python.LanguageTool(language)
   matches = tool.check(user_guess)
   if matches == []:
@@ -223,11 +223,11 @@ else:
 correctness_counter = []
 wrong_words = []
 
-game(image_dataset[0], correctness_counter, wrong_words, language)
-game(image_dataset[1], correctness_counter, wrong_words, language)
-game(image_dataset[2], correctness_counter, wrong_words, language)
-game(image_dataset[3], correctness_counter, wrong_words, language)
-game(image_dataset[4], correctness_counter, wrong_words, language)
+game(image_dataset[0], 0, correctness_counter, wrong_words, language)
+game(image_dataset[1], 1, correctness_counter, wrong_words, language)
+game(image_dataset[2], 2, correctness_counter, wrong_words, language)
+game(image_dataset[3], 3, correctness_counter, wrong_words, language)
+game(image_dataset[4], 4, correctness_counter, wrong_words, language)
 
 if language == 'it':
   st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
