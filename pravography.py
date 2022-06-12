@@ -138,7 +138,7 @@ if address:
         language =  "en"
         st.caption("Ви перебуваєте за межами Італії, тому програма працюватиме англійською мовою.")
         st.caption("You are out of Italy, so the app will run in English.")
-if language:
+if address:
     if language == 'it':
         st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
         st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
@@ -218,7 +218,7 @@ for myList in chosen_dataset.values():
         all_images.append(image_dict)
 random_dataset = numpy.random.choice(all_images, 5, False)
 
-if number:
+if address:
     if number != ' ':
         image_dataset = chosen_dataset[number]
     elif random:
