@@ -120,10 +120,10 @@ def final_message(percentuale, language):
     st.audio('audio_lan.mp3')
     st.image('forza.jpeg')
 
-st.caption1("Натисніть кнопку, щоб отримати своє місцезнаходження та почати гру.")
-st.caption2("Press the button to get your location and start the game.")
-st.caption3("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
-caption = st.caption1, st.caption2, st.caption3
+text1 = st.caption("Натисніть кнопку, щоб отримати своє місцезнаходження та почати гру.")
+text2 = st.caption("Press the button to get your location and start the game.")
+text3 = st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
+caption = text1, text2, text3
 make_it_flash(caption)
 
 address = geo()
