@@ -14,7 +14,7 @@ import geopy
 from geopy.geocoders import Nominatim
 
 
-def geo():
+def geo(address):
     loc_button = Button(label="Отримати місцезнаходження пристрою", max_width=250)
     loc_button.js_on_event(
         "button_click",
@@ -46,7 +46,7 @@ def geo():
             geoLoc = Nominatim(user_agent="GetLoc")
             locname = geoLoc.reverse(latlon)
             address = locname.address
-            st.write(address)
+            
             
 
 #def audioplayer(audio):
@@ -124,7 +124,8 @@ st.caption("Натисніть кнопку, щоб отримати своє м
 st.caption("Press the button to get your location and start the game.")
 st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
 
-address = geo()
+address = " "
+geo(address)
 
 import re
 regexpr = r'[A-Za-z]+'
