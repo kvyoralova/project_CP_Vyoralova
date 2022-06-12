@@ -1,11 +1,8 @@
 import streamlit as st
 from gtts import gTTS
-import IPython.display as ipd 
 from googletrans import Translator
 import time
-import sys
 import language_tool_python
-import streamlit as st
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
