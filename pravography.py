@@ -241,23 +241,25 @@ if address:
         game(image_dataset, 4, correctness_counter, wrong_words, language)
 
 if address:
-    if language == 'it':
-        st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
-        st.caption('Hai fatto giuste', str(len(correctness_counter)), 'parole su ', str(len(image_dataset)))
-        if wrong_words != []:
-            st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
-            for el in wrong_words:
-                st.write(el)
-    else:
-        st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
-        st.caption('You got', str(len(correctness_counter)), 'correct words out of', str(len(image_dataset)), "!")
-        if wrong_words != []:
-            st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
-            for el in wrong_words:
-                st.write(el)
+    if number != '':
+        if language == 'it':
+            st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
+            st.caption('Hai fatto giuste', str(len(correctness_counter)), 'parole su ', str(len(image_dataset)))
+            if wrong_words != []:
+                st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+                for el in wrong_words:
+                    st.write(el)
+        else:
+            st.subheader('Ви правильно отримали', str(len(correctness_counter)), 'з', str(len(image_dataset)), 'слів!')
+            st.caption('You got', str(len(correctness_counter)), 'correct words out of', str(len(image_dataset)), "!")
+            if wrong_words != []:
+                st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+                for el in wrong_words:
+                    st.write(el)
     
 if address:
-    percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
-    final_message(percentuale, language)
+    if number != '':
+        percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
+        final_message(percentuale, language)
 
 
