@@ -49,13 +49,11 @@ def geo():
             return address
             
 
-#def audioplayer(audio):
-#  ipd.display(ipd.Audio(audio, autoplay=True))
-
-def make_it_flash(text):
-    text = st.empty()
-    text.st.write(text)
+def disappear(text):
+    placeholder = st.empty()
+    placeholder.text(text)
     time.sleep(5)
+    placeholder.empty()
 
 def game(dataset, correctness_counter, wrong_words, language):
   image_dict = dataset
@@ -83,7 +81,7 @@ def game(dataset, correctness_counter, wrong_words, language):
   st.write('Вимова цього слова: ')
   st.audio('audio.mp3')
   st.write("Тепер ви побачите, як пишеться це слово. Спробуй це запам’ятати! ")
-  make_it_flash(translated_text)
+  disappear(translated_text)
   user_guess = st.text_input("\nА тепер спробуйте самі написати це слово! ")
   tool = language_tool_python.LanguageTool(language)
   matches = tool.check(user_guess)
