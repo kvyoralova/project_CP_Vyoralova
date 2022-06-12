@@ -129,6 +129,6 @@ address = geo()
 #st.write(address)
 import re
 regexpr = r'[A-Za-z]+'
-actual_location = re.findall(regexpr, address))
+actual_location = re.findall(regexpr, address)
 country = actual_location[-1]
 st.write(country)
