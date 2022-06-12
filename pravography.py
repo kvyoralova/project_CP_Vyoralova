@@ -130,5 +130,5 @@ st.write(address)
 import re
 regexpr = r'[A-Za-z]+'
 actual_location = re.findall(regexpr, address.lower())
-#country = actual_location[-1]
-#st.write(actual_location)
+country = actual_location[-1]
+st.write(actual_location)
