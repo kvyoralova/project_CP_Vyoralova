@@ -46,38 +46,8 @@ def geo():
             geoLoc = Nominatim(user_agent="GetLoc")
             locname = geoLoc.reverse(latlon)
             address = locname.address
-            import re
-            regexpr = r'[A-Za-z]+'
-            actual_location = re.findall(regexpr, address.lower())
-            country = actual_location[-1]
-            if country == "italia":
-              language = "it"
-              st.caption("Ви перебуваєте в Італії, тому програма працюватиме італійською мовою.")
-              st.caption("Sei in Italia, quindi l'app verrà eseguita in italiano.")
-            else:
-              language =  "en"
-              st.caption("Ви перебуваєте за межами Італії, тому програма працюватиме англійською мовою.")
-              st.caption("You are out of Italy, so the app will run in English.")
-            if language == 'it':
-                st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
-                st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
-                st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
-                st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
-  
-                st.subheader("Давай грати! Giochiamo!")
-                number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
-                st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
-                random = st.button("Tут. Qui.")
-            else:
-                st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
-                st.header('Грайте, пишіть і вчіться! Play, write and learn!')
-                st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
-                st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
-  
-                st.subheader("Давай грати! Let's play!")
-                number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
-                st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
-                random = st.button("Tут. Here.")
+            return address
+            
 
 #def audioplayer(audio):
 #  ipd.display(ipd.Audio(audio, autoplay=True))
@@ -155,6 +125,39 @@ st.caption("Press the button to get your location and start the game.")
 st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
 
 geo()
+
+import re
+regexpr = r'[A-Za-z]+'
+actual_location = re.findall(regexpr, address.lower())
+country = actual_location[-1]
+if country == "italia":
+    language = "it"
+    st.caption("Ви перебуваєте в Італії, тому програма працюватиме італійською мовою.")
+    st.caption("Sei in Italia, quindi l'app verrà eseguita in italiano.")
+else:
+    language =  "en"
+    st.caption("Ви перебуваєте за межами Італії, тому програма працюватиме англійською мовою.")
+    st.caption("You are out of Italy, so the app will run in English.")
+if language == 'it':
+    st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
+    st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
+    st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
+    st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
+  
+    st.subheader("Давай грати! Giochiamo!")
+    number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
+    st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
+    random = st.button("Tут. Qui.")
+else:
+    st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
+    st.header('Грайте, пишіть і вчіться! Play, write and learn!')
+    st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
+    st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
+  
+    st.subheader("Давай грати! Let's play!")
+    number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
+    st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
+    random = st.button("Tут. Here.")
 
 chosen_dataset = {'1':[{'1. Arancia.jpeg':'апельсин'},
                        {'1. Bacio.jpeg':'поцілунок'},
