@@ -48,9 +48,9 @@ def geo():
             address = locname.address
             import re
             regexpr = r'[A-Za-z]+'
-            actual_location = re.findall(regexpr, image.lower())
+            actual_location = re.findall(regexpr, address.lower())
             country = actual_location[-1]
-            if country == "Italia":
+            if country == "italia":
               language = "it"
               st.write("Ви перебуваєте в Італії, тому програма працюватиме італійською мовою.")
               st.write("Sei in Italia, quindi l'app verrà eseguita in italiano.")
