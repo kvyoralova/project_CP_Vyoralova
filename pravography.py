@@ -91,13 +91,13 @@ def game(dataset, num, correctness_counter, wrong_words, language):
     wrong_words.append(translated_text)
     
 def final_message(percentuale, language):
-  if percentuale > 60:
+  if percentuale >= 60:
     message='хороша робота!'
     tts_uk=gTTS(text=message, lang='uk')
     tts_uk.save('audio_uk.mp3')
     st.audio('audio_uk.mp3')
     translator = Translator()
-    tran_lang = translator.translate(text, src="uk", dest=language) 
+    tran_lang = translator.translate(text=message, src="uk", dest=language) 
     tran_message = tran_lang.text
     tts_lan=gTTS(text=tran_message, lang=language)
     tts_lan.save('audio_lan.mp3')
@@ -109,7 +109,7 @@ def final_message(percentuale, language):
     tts_uk.save('audio_uk.mp3')
     st.audio('audio_uk.mp3')
     translator = Translator()
-    tran_lang = translator.translate(text, src="uk", dest=language) 
+    tran_lang = translator.translate(text=message, src="uk", dest=language) 
     tran_message = tran_lang.text
     tts_lan=gTTS(text=tran_message, lang=language)
     tts_lan.save('audio_lan.mp3')
