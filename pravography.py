@@ -127,42 +127,42 @@ with st.expander("See explanation"):
     st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.")
 
 address = geo()
-if address:
-    import re
-    regexpr = r'[A-Za-z]+'
-    actual_location = re.findall(regexpr, address)
-    country = actual_location[-1]
-    if country == "Italia":
-        language = "it"
-        st.caption("Ви перебуваєте в Італії, тому програма працюватиме італійською мовою.")
-        st.caption("Sei in Italia, quindi l'app verrà eseguita in italiano.")
-    else:
-        language =  "en"
-        st.caption("Ви перебуваєте за межами Італії, тому програма працюватиме англійською мовою.")
-        st.caption("You are out of Italy, so the app will run in English.")
-if address:
-    if language == 'it':
-        st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
-        st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
-        with st.expander("Vedi spiegazione"):
-            st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
-            st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
+
+import re
+regexpr = r'[A-Za-z]+'
+actual_location = re.findall(regexpr, address)
+country = actual_location[-1]
+if country == "Italia":
+   language = "it"
+   st.caption("Ви перебуваєте в Італії, тому програма працюватиме італійською мовою.")
+   st.caption("Sei in Italia, quindi l'app verrà eseguita in italiano.")
+else:
+   language =  "en"
+   st.caption("Ви перебуваєте за межами Італії, тому програма працюватиме англійською мовою.")
+   st.caption("You are out of Italy, so the app will run in English.")
+
+if language == 'it':
+   st.title('Правоgrafia: навчись добре писати італійською! Impara a scrivere bene in italiano!')
+   st.header('Грайте, пишіть і вчіться! Gioca, scrivi e impara!')
+   with st.expander("Vedi spiegazione"):
+      st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
+      st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
   
-        st.subheader("Давай грати! Giochiamo!")
-        number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
-        st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
-        random = st.button("Tут. Qui.")
-    else:
-        st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
-        st.header('Грайте, пишіть і вчіться! Play, write and learn!')
-        with st.expander("See explanation"):
-            st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
-            st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
+      st.subheader("Давай грати! Giochiamo!")
+      number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
+      st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
+      random = st.button("Tут. Qui.")
+else:
+   st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
+   st.header('Грайте, пишіть і вчіться! Play, write and learn!')
+   with st.expander("See explanation"):
+      st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
+      st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
   
-        st.subheader("Давай грати! Let's play!")
-        number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
-        st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
-        random = st.button("Tут. Here.")
+      st.subheader("Давай грати! Let's play!")
+      number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
+      st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
+      random = st.button("Tут. Here.")
 
 chosen_dataset = {'1':[{'1. Arancia.jpeg':'апельсин'},
                        {'1. Bacio.jpeg':'поцілунок'},
@@ -222,41 +222,34 @@ for myList in chosen_dataset.values():
         all_images.append(image_dict)
 random_dataset = numpy.random.choice(all_images, 5, False)
 
-if address:
-    if number != '':
-        image_dataset = chosen_dataset[number]
-    elif random:
-        image_dataset = random_dataset
-    else:
-        pass
+if number != '':
+  image_dataset = chosen_dataset[number]
+elif random:
+  image_dataset = random_dataset
+else:
+  pass
 
 correctness_counter = []
 wrong_words = []
 
-if address:
-    if number != '':
-        game(image_dataset, 0, correctness_counter, wrong_words, language)
-        game(image_dataset, 1, correctness_counter, wrong_words, language)
-        game(image_dataset, 2, correctness_counter, wrong_words, language)
-        game(image_dataset, 3, correctness_counter, wrong_words, language)
-        #game(image_dataset, 4, correctness_counter, wrong_words, language)
+game(image_dataset, 0, correctness_counter, wrong_words, language)
+game(image_dataset, 1, correctness_counter, wrong_words, language)
+game(image_dataset, 2, correctness_counter, wrong_words, language)
+game(image_dataset, 3, correctness_counter, wrong_words, language)
+game(image_dataset, 4, correctness_counter, wrong_words, language)
     
-if address:
-    if number != '':
-        percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
-        final_message(percentuale, language)
-if address:
-    if number != '':
-        if language == 'it':
-            if wrong_words != []:
-                st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
-                for el in wrong_words:
-                    st.write(el)
-        else:
-            if wrong_words != []:
-                st.subheader("Це слова, які ви помилилися. These are the words you got wrong.")
-                for el in wrong_words:
-                    st.write(el)
+percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
+final_message(percentuale, language)
 
+if language == 'it':
+  if wrong_words != []:
+    st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+    for el in wrong_words:
+      st.write(el)
+else:
+  if wrong_words != []:
+    st.subheader("Це слова, які ви помилилися. These are the words you got wrong.")
+    for el in wrong_words:
+      st.write(el)
 
 
