@@ -53,14 +53,12 @@ def geo():
 #  ipd.display(ipd.Audio(audio, autoplay=True))
 
 def make_it_flash(text):
-    for i in reversed(range(2)):
-        sys.stdout.write('\r')
-        sys.stdout.write(text if i % 2 else ' '*len(text))
-        sys.stdout.flush()
-        time.sleep(5)
+    text = st.empty()
+    text.text_write(text)
+    time.sleep(5)
 
-def game(dataset, num, correctness_counter, wrong_words, language):
-  image_dict = dataset[num]
+def game(dataset, correctness_counter, wrong_words, language):
+  image_dict = dataset
   for image, text in image_dict.items():
     st.image(image)
     st.write(text)
@@ -85,7 +83,7 @@ def game(dataset, num, correctness_counter, wrong_words, language):
   st.write('Вимова цього слова: ')
   st.audio('audio.mp3')
   st.write("Тепер ви побачите, як пишеться це слово. Спробуй це запам’ятати! ")
-  st.write(make_it_flash(translated_text))
+  make_it_flash(translated_text)
   user_guess = st.text_input("\nА тепер спробуйте самі написати це слово! ")
   tool = language_tool_python.LanguageTool(language)
   matches = tool.check(user_guess)
@@ -223,14 +221,14 @@ elif random:
 else:
   pass
 
-counter = 0
-number_of_images = len(image_dataset)-1
 correctness_counter = []
 wrong_words = []
 
-while counter <= number_of_images:
-  game(image_dataset, counter, correctness_counter, wrong_words, language)
-  counter = counter + 1
+game(image_dataset[0], correctness_counter, wrong_words, language)
+game(image_dataset[1], correctness_counter, wrong_words, language)
+game(image_dataset[2], correctness_counter, wrong_words, language)
+game(image_dataset[3], correctness_counter, wrong_words, language)
+game(image_dataset[4], correctness_counter, wrong_words, language)
 
 if language == 'it':
   st.write('Ви правильно отримали', len(correctness_counter), 'з', len(image_dataset), 'слів!')
