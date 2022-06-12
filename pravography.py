@@ -96,12 +96,16 @@ def game(dataset, num, correctness_counter, wrong_words, language):
   time.sleep(3)
     
 def final_message(percentuale, language):
+  st.header("Кінець гри!")
+  translator = Translator()
+  tran_tit = translator.translate(text="Кінець гри!", src="uk", dest=language) 
+  tran_tit_message = tran_tit.text
+  st.caption(tran_tit_message)
   if percentuale >= 60:
     message='хороша робота!'
     tts_uk=gTTS(text=message, lang='uk')
     tts_uk.save('audio_uk.mp3')
     st.audio('audio_uk.mp3')
-    translator = Translator()
     tran_lang = translator.translate(text=message, src="uk", dest=language) 
     tran_message = tran_lang.text
     tts_lan=gTTS(text=tran_message, lang=language)
@@ -113,7 +117,6 @@ def final_message(percentuale, language):
     tts_uk=gTTS(text=message, lang='uk')
     tts_uk.save('audio_uk.mp3')
     st.audio('audio_uk.mp3')
-    translator = Translator()
     tran_lang = translator.translate(text=message, src="uk", dest=language) 
     tran_message = tran_lang.text
     tts_lan=gTTS(text=tran_message, lang=language)
@@ -240,27 +243,23 @@ if address:
         game(image_dataset, 2, correctness_counter, wrong_words, language)
         game(image_dataset, 3, correctness_counter, wrong_words, language)
         game(image_dataset, 4, correctness_counter, wrong_words, language)
-
+    
 if address:
     if number != '':
         percentuale = 100 * float(len(correctness_counter))/float(len(image_dataset))
+        final_message(percentuale, language)
+if address:
+    if number != '':
         if language == 'it':
-            st.subheader('Ви правильно отримали', str(percentuale), '% слів!')
-            st.caption('Hai fatto giuste il', str(percentuale), '% delle parole!')
             if wrong_words != []:
                 st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
                 for el in wrong_words:
                     st.write(el)
         else:
-            st.subheader('Ви правильно отримали', str(percentuale), '% слів!')
-            st.caption('You got correctly the', str(percentuale), '% of the words!')
             if wrong_words != []:
-                st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
+                st.subheader("Це слова, які ви помилилися. These are the words you got wrong.")
                 for el in wrong_words:
                     st.write(el)
-    
-if address:
-    if number != '':
-        final_message(percentuale, language)
+
 
 
