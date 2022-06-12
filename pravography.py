@@ -126,8 +126,4 @@ st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.
 
 address = " "
 geo(address)
-
-import re
-regexpr = r'[A-Za-z]+'
-actual_location = re.findall(regexpr, address.lower())
-st.write(actual_location)
+st.write(type(address))
