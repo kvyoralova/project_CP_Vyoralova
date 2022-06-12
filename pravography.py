@@ -126,8 +126,9 @@ st.caption("Premi il pulsante per ottenere la tua posizione e iniziare il gioco.
 
 address = " "
 geo(address)
+st.write(address)
 import re
 regexpr = r'[A-Za-z]+'
 actual_location = re.findall(regexpr, address.lower())
 #country = actual_location[-1]
-st.write(actual_location)
+#st.write(actual_location)
