@@ -54,7 +54,7 @@ def geo():
 
 def make_it_flash(text):
     text = st.empty()
-    text.text_write(text)
+    text.st.write(text)
     time.sleep(5)
 
 def game(dataset, correctness_counter, wrong_words, language):
