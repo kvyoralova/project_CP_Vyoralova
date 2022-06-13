@@ -148,10 +148,10 @@ if language == 'it':
       st.caption("Ця програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами.")
       st.caption("Questa applicazione è rivolta a bambini ucraini che hanno difficoltà con i principali ostacoli ortografici italiani.")
   
-      st.subheader("Давай грати! Giochiamo!")
-      number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
-      st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
-      random = st.button("Tут. Qui.")
+   st.subheader("Давай грати! Giochiamo!")
+   number = st.text_input("Дай мені число від 1 до 10. Dammi un numero da 1 a 10. ", value="")
+   st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Oppure clicca qui per avere 5 immagini casuali.")
+   random = st.button("Tут. Qui.")
 else:
    st.title('Правоgraphy: навчись добре писати англійською! Learn to write correctly in English!')
    st.header('Грайте, пишіть і вчіться! Play, write and learn!')
@@ -159,10 +159,10 @@ else:
       st.caption("Це програма орієнтована на українських дітей, які мають труднощі з основними італійськими орфографічними перешкодами. В англійській версії орфографічні перешкоди не згруповані, як в італійській, а повідомляються у випадковому порядку; однак він залишається програмою, з якою користувач може практикувати.")
       st.caption("This application is aimed at Ukrainian children who have difficulty with the main Italian spelling obstacles. In the English version the spelling obstacles are not grouped as in Italian, but are reported in random order; however, it remains an application with which the user can practice.")
   
-      st.subheader("Давай грати! Let's play!")
-      number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
-      st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
-      random = st.button("Tут. Here.")
+   st.subheader("Давай грати! Let's play!")
+   number = st.text_input("Дай мені число від 1 до 10. Give me a number from 1 to 10. ", value="")
+   st.write("Або натисніть тут, щоб отримати 5 випадкових зображень. Or click here to get 5 random images.")
+   random = st.button("Tут. Here.")
 
 chosen_dataset = {'1':[{'1. Arancia.jpeg':'апельсин'},
                        {'1. Bacio.jpeg':'поцілунок'},
@@ -245,11 +245,11 @@ if language == 'it':
   if wrong_words != []:
     st.subheader("Це слова, які ви помилилися. Queste sono le parole che hai sbagliato.")
     for el in wrong_words:
-      st.write(el)
+      st.write(f'""" - {el} """')
 else:
   if wrong_words != []:
     st.subheader("Це слова, які ви помилилися. These are the words you got wrong.")
     for el in wrong_words:
-      st.write(el)
+      st.write(f'""" - {el} """')
 
 
